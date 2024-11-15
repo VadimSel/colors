@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Colors</title>
+		<link rel="stylesheet" href="normalize.css" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<nav class="header">
+				<div class="logoContainer">
+					<img id="logo" src="assets/img/Frame 37.svg" alt="logo" />
+				</div>
+				<ul class="textLinks"></ul>
+				<div class="phoneNumberContainer">
+					<a id="phoneNumber" href="tel:+74952217769">+7 (495) 221-77-69</a>
+					<span id="phoneText">Заказать звонок</span>
+				</div>
+				<div class="iconLinksContainer">
+					<ul class="iconLinks"></ul>
+					<button aria-label="Открыть корзину" id="openCart">
+						<img src="assets/img/Frame 38.svg" alt="cart" />
+					</button>
+				</div>
+			</nav>
+			<aside id="cart"></aside>
+			<section class="sliderContainer">
+				<div class="slider"></div>
+				<div class="slideSideText"></div>
+				<div class="slideContent">
+					<h2 class="slideTitle">Краски</h2>
+					<span class="slideText"
+						>Идеально подходят для стен и других поверхностей.<br />Найди свой идеальный
+						цвет!</span
+					>
+				</div>
+				<div class="pagination"></div>
+				<div class="arrowContainer"></div>
+			</section>
+			<div class="main">
+				<aside class="sidebar">
+					<div class="sidebarToggleContent"></div>
+				</aside>
+				<main class="mainContent">
+					<section class="mainSection"></section>
+					<span class="productsCount">412 товаров</span>
+					<div id="modalBackground"></div>
+					<button id="sortTextButton">
+						Сначала дорогие<img src="assets/img/Frame 10.svg" />
+					</button>
+					<div id="modal">
+						<ul id="modalOptions"></ul>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script src="index.js"></script>
+	</body>
+</html>
