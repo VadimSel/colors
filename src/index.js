@@ -109,6 +109,45 @@ const modalOptionsData = [
 // 	},
 // ];
 
+const cartItemsData = [
+	{
+		image: "https://i.imgur.com/ffNIfiC.png",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "9600",
+		count: "2"
+	},
+	{
+		image: "https://i.imgur.com/ffNIfiC.png",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "9600",
+		count: "2"
+	},
+	// {
+	// 	image: "https://i.imgur.com/ffNIfiC.png",
+	// 	name: "Краска Wallquest, Brownsone MS90102",
+	// 	price: "9600",
+	// 	count: "2"
+	// },
+	// {
+	// 	image: "https://i.imgur.com/ffNIfiC.png",
+	// 	name: "Краска Wallquest, Brownsone MS90102",
+	// 	price: "9600",
+	// 	count: "2"
+	// },
+	// {
+	// 	image: "https://i.imgur.com/ffNIfiC.png",
+	// 	name: "Краска Wallquest, Brownsone MS90102",
+	// 	price: "9600",
+	// 	count: "2"
+	// },
+	// {
+	// 	image: "https://i.imgur.com/ffNIfiC.png",
+	// 	name: "Краска Wallquest, Brownsone MS90102",
+	// 	price: "9600",
+	// 	count: "2"
+	// },
+]
+
 let mainContentProducts;
 
 const fetchProducts = async () => {
@@ -298,3 +337,25 @@ openCartButton.addEventListener("click", () => {
 	modalBackground.style.opacity = "1";
 	modalBackground.style.zIndex = "15";
 })
+
+const cartContentItems = document.getElementById("cartContentItems")
+
+cartContentItems.innerHTML = cartItemsData.map((item) => {
+	return (
+		`<li class="cartItem">
+			<img class="cartItemImage" src="${item.image}" alt="item" />
+			<div class="cartItemInfo">
+				<p class="cartItemName">${item.name}</p>
+				<p class="cartItemPrice">${item.price}</p>
+			</div>
+			<div class="cartItemCount">
+				<button class="cartItemCountMinus">-</button>
+				<p class="cartItemCountQuantity">${item.count}</p>
+				<button class="cartItemCountPlus">+</button>
+			</div>
+			<button class="cartItemDelete">
+				<img src="assets/img/x.svg" alt="delete" />
+			</button>
+		</li>`
+	)
+}).join("")

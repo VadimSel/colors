@@ -25,7 +25,32 @@
 					</button>
 				</div>
 			</nav>
-			<aside id="cart"></aside>
+			<aside id="cart">
+				<div id="cartContainer">
+					<div id="cartHeaderAndContent">
+						<div id="cartHeaderAndContentHeader">
+							<div id="cartHeader">
+								<h2 id="cartTitle">Корзина</h2>
+								<button id="closeCartButton">
+									<img src="assets/img/x.svg" alt="closeCart" />
+								</button>
+							</div>
+							<div id="cartContentHeader">
+								<span id="itemsCount">4 товара</span>
+								<button id="itemsCountDelete">очистить список</button>
+							</div>
+						</div>
+						<ul id="cartContentItems"></ul>
+					</div>
+					<div id="cartFooter">
+						<div id="cartTotalPriceContent">
+							<span id="priceText">Итого</span>
+							<span id="cartTotalPrice">14 400₽</span>
+						</div>
+						<button id="createOrderButton">Оформить заказ</button>
+					</div>
+				</div>
+			</aside>
 			<section class="sliderContainer">
 				<div class="slider"></div>
 				<div class="slideSideText"></div>
