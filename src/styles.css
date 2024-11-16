@@ -577,6 +577,10 @@
   border-radius: 4px;
 }
 
+.cartItemCountMinus img, .cartItemCountPlus img {
+  width: 16px;
+}
+
 .cartItemDelete {
   background: none;
 }

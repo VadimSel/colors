@@ -114,13 +114,13 @@ const cartItemsData = [
 		image: "https://i.imgur.com/ffNIfiC.png",
 		name: "Краска Wallquest, Brownsone MS90102",
 		price: "9600",
-		count: "2"
+		count: "2",
 	},
 	{
 		image: "https://i.imgur.com/ffNIfiC.png",
 		name: "Краска Wallquest, Brownsone MS90102",
 		price: "9600",
-		count: "2"
+		count: "2",
 	},
 	// {
 	// 	image: "https://i.imgur.com/ffNIfiC.png",
@@ -146,7 +146,7 @@ const cartItemsData = [
 	// 	price: "9600",
 	// 	count: "2"
 	// },
-]
+];
 
 let mainContentProducts;
 
@@ -303,7 +303,7 @@ const modalHandler = (action, payload) => {
 			modal.style.height = "";
 			modalBackground.style.opacity = "0";
 			modalBackground.style.zIndex = "-1";
-			cart.style.width = "0px"
+			cart.style.width = "0px";
 			sort(sortValue, optionName);
 			break;
 	}
@@ -329,33 +329,37 @@ const sort = (sortValue, optionName) => {
 
 /* ------------------- Cart ------------------- */
 
-const openCartButton = document.getElementById("openCart")
-const cart = document.getElementById("cart")
+const openCartButton = document.getElementById("openCart");
+const cart = document.getElementById("cart");
 
 openCartButton.addEventListener("click", () => {
-	cart.style.width = "600px"
+	cart.style.width = "600px";
 	modalBackground.style.opacity = "1";
 	modalBackground.style.zIndex = "15";
-})
+});
 
-const cartContentItems = document.getElementById("cartContentItems")
+const cartContentItems = document.getElementById("cartContentItems");
 
-cartContentItems.innerHTML = cartItemsData.map((item) => {
-	return (
-		`<li class="cartItem">
+cartContentItems.innerHTML = cartItemsData
+	.map((item) => {
+		return `<li class="cartItem">
 			<img class="cartItemImage" src="${item.image}" alt="item" />
 			<div class="cartItemInfo">
 				<p class="cartItemName">${item.name}</p>
 				<p class="cartItemPrice">${item.price}</p>
 			</div>
 			<div class="cartItemCount">
-				<button class="cartItemCountMinus">-</button>
+				<button class="cartItemCountMinus">
+					<img src="assets/img/minus.svg" alt="minus" />
+				</button>
 				<p class="cartItemCountQuantity">${item.count}</p>
-				<button class="cartItemCountPlus">+</button>
+				<button class="cartItemCountPlus">
+					<img src="assets/img/plus.svg" alt="plus" />
+				</button>
 			</div>
 			<button class="cartItemDelete">
 				<img src="assets/img/x.svg" alt="delete" />
 			</button>
-		</li>`
-	)
-}).join("")
+		</li>`;
+	})
+	.join("");
