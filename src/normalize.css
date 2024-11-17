@@ -24,6 +24,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 :root {
   --main-color-black: "1F2020";
   --main-color-grey: #F2F2F2;
+  --main-color-grey-dark: #CDCDCD;
   --main-color-green: #7BB899;
   --main-color-green-dark: #6a9781;
 }

@@ -148,17 +148,19 @@ const mainSection = document.querySelector(".mainSection");
 const renderMainContent = (products) => {
 	mainSection.innerHTML = products
 		.map((product) => {
-			return `<div class="productCart" data-id="${product.id}" data-quantity="${product.quantity}">
-			<div class="productImageContainer">
-				<img class="productImage" src="${product.image}" alt="${product.name}" />
-			</div>
-			<div class="productInfo">
-				<h3 class="productName">${product.name}</h3>
-				<div class="priceAndButton">
-					<p class="productPrice">${product.price} ₽</p>
-					<button class="addProduct">
-						<img src="assets/img/plus.svg" alt="plus"/>
-					</button>
+			return `<div class="productCartContainer">
+			<div class="productCart" data-id="${product.id}" data-quantity="${product.quantity}">
+				<div class="productImageContainer">
+					<img class="productImage" src="${product.image}" alt="${product.name}" />
+				</div>
+				<div class="productInfo">
+					<h3 class="productName">${product.name}</h3>
+					<div class="priceAndButton">
+						<p class="productPrice">${product.price} ₽</p>
+						<button class="addProduct">
+							<img src="assets/img/plus.svg" alt="plus"/>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>`;
@@ -198,7 +200,7 @@ const modalHandler = (action, payload) => {
 			modalBackground.style.opacity = "0";
 			modalBackground.style.zIndex = "-1";
 			cart.style.width = "0px";
-			sidebar.style.height = "0px"
+			sidebar.style.height = "0px";
 			sort(sortValue, optionName);
 			break;
 	}
@@ -225,6 +227,7 @@ const sort = (sortValue, optionName) => {
 /* ------------------- Cart ------------------- */
 
 const openCartButton = document.getElementById("openCart");
+const openCartMobileButton = document.getElementById("openCartMobile");
 const cart = document.getElementById("cart");
 const addProduct = document.querySelector(".addProduct");
 const itemsCount = document.getElementById("itemsCount");
@@ -232,6 +235,12 @@ const closeCartButton = document.getElementById("closeCartButton");
 
 openCartButton.addEventListener("click", () => {
 	cart.style.width = "600px";
+	modalBackground.style.opacity = "1";
+	modalBackground.style.zIndex = "15";
+});
+
+openCartMobileButton.addEventListener("click", () => {
+	cart.style.width = "100vw";
 	modalBackground.style.opacity = "1";
 	modalBackground.style.zIndex = "15";
 });
@@ -349,6 +358,7 @@ const totalCardItemsQuantity = () => {
 		0
 	);
 	const openCartNumber = document.getElementById("openCart");
+	const openCartMobileNumber = document.getElementById("openCartMobile");
 
 	const quantityText = (quantity) => {
 		const lastDigit = quantity % 10;
@@ -363,6 +373,7 @@ const totalCardItemsQuantity = () => {
 
 	itemsCount.innerText = quantityText(totalQuantity);
 	openCartNumber.innerText = totalQuantity;
+	openCartMobileNumber.innerText = totalQuantity;
 };
 
 const totalCartAmount = () => {
@@ -375,14 +386,27 @@ const totalCartAmount = () => {
 	cartTotalPrice.innerText = `${formattedTotalAmount} ₽`;
 };
 
-
 /* ------------------- Burger menu ------------------- */
 
-const burgerMenu = document.querySelector(".burgerMenu")
-const sidebar = document.querySelector(".sidebar")
+const burgerMenu = document.querySelector(".burgerMenu");
+const sidebar = document.querySelector(".sidebar");
 
 burgerMenu.addEventListener("click", () => {
-	sidebar.style.height = "318px"
+	sidebar.style.height = "318px";
 	modalBackground.style.opacity = "1";
 	modalBackground.style.zIndex = "15";
-})
+});
+
+/* ------------------- Main content mobile ------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sideTextMobile = document.querySelector(".sideTextMobile");
+
+  sideTextMobile.innerHTML = slideSideWords
+    .map((word, index) => {
+      return `<span>${word}</span> ${
+        index < slideSideWords.length - 1 ? `<img src="assets/img/Ellipse 47.svg"/>` : ""
+      }`;
+    })
+    .join("");
+});

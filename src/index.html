@@ -26,6 +26,7 @@
 				<div class="iconLinksContainer">
 					<ul class="iconLinks"></ul>
 					<button aria-label="Открыть корзину" id="openCart">0</button>
+					<button aria-label="Открыть корзину" id="openCartMobile">0</button>
 				</div>
 			</nav>
 			<aside id="cart">
@@ -58,7 +59,7 @@
 				<div class="slider"></div>
 				<div class="slideSideText"></div>
 				<div class="slideContent">
-					<h2 class="slideTitle">Краски</h2>
+					<h1 class="slideTitle">Краски</h1>
 					<span class="slideText"
 						>Идеально подходят для стен и других поверхностей.<br />Найди свой идеальный
 						цвет!</span
@@ -73,12 +74,17 @@
 					<div class="sidebarToggleContent"></div>
 				</aside>
 				<main class="mainContent">
-					<section class="mainSection"></section>
+					<div class='sideTextMobile'></div>
 					<span class="productsCount">412 товаров</span>
 					<div id="modalBackground"></div>
-					<button id="sortTextButton">
-						Сначала дорогие<img src="assets/img/Frame 10.svg" />
-					</button>
+					<h1 class="mobileTitle">Краски</h1>
+					<div class="filtersTextAndButton">
+						<span class="filtersText">Фильтры</span>
+						<button id="sortTextButton">
+							Сначала дорогие<img src="assets/img/Frame 10.svg" />
+						</button>
+					</div>
+					<section class="mainSection"></section>
 					<div id="modal">
 						<ul id="modalOptions"></ul>
 					</div>
