@@ -13,12 +13,12 @@ const Icons = [
 	{ label: "Избранное", src: "assets/img/heart.svg", alt: "heart" },
 ];
 const sliderImages = [
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.png", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
+	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
 ];
 const sliderButtons = [
 	{ src: "assets/img/chevron-left.svg", alt: "leftArrow" },
