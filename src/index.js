@@ -31,124 +31,11 @@ const modalOptionsData = [
 	{ text: "сначала популярные", sortValue: "popularFirst" },
 	{ text: "сначала новые", sortValue: "newFirst" },
 ];
-// const mainContentProducts = [
-// 	{
-// 		image: "https://i.imgur.com/vDHdJGH.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "6000",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/ffNIfiC.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "4800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/hGbofoG.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "5290",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/0Qjxqsj.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "2800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/ek5Unoy.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "3400",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/H9IjbAy.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "6000",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/AMxSUSK.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "4800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/ZptWpr9.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "5290",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/ESuBEau.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "2800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/nQbVy1m.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "3400",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/ce75abf.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "6000",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/5N6YkX4.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "4800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/Tn4jdjT.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "5290",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/MFmkUIa.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "2800",
-// 	},
-// 	{
-// 		image: "https://i.imgur.com/i38xYLt.png",
-// 		name: "Краска Wallquest, Brownsone MS90102",
-// 		price: "3400",
-// 	},
-// ];
 
-const cartItemsData = [
-	{
-		image: "https://i.imgur.com/ffNIfiC.png",
-		name: "Краска Wallquest, Brownsone MS90102",
-		price: "9600",
-		count: "2",
-	},
-	{
-		image: "https://i.imgur.com/ffNIfiC.png",
-		name: "Краска Wallquest, Brownsone MS90102",
-		price: "9600",
-		count: "2",
-	},
-	// {
-	// 	image: "https://i.imgur.com/ffNIfiC.png",
-	// 	name: "Краска Wallquest, Brownsone MS90102",
-	// 	price: "9600",
-	// 	count: "2"
-	// },
-	// {
-	// 	image: "https://i.imgur.com/ffNIfiC.png",
-	// 	name: "Краска Wallquest, Brownsone MS90102",
-	// 	price: "9600",
-	// 	count: "2"
-	// },
-	// {
-	// 	image: "https://i.imgur.com/ffNIfiC.png",
-	// 	name: "Краска Wallquest, Brownsone MS90102",
-	// 	price: "9600",
-	// 	count: "2"
-	// },
-	// {
-	// 	image: "https://i.imgur.com/ffNIfiC.png",
-	// 	name: "Краска Wallquest, Brownsone MS90102",
-	// 	price: "9600",
-	// 	count: "2"
-	// },
-];
-
+let cartItemsData = [];
 let mainContentProducts;
+
+/* ------------------- Get products from API ------------------- */
 
 const fetchProducts = async () => {
 	try {
@@ -161,6 +48,8 @@ const fetchProducts = async () => {
 };
 
 fetchProducts();
+
+/* ------------------- Header ------------------- */
 
 const renderTextLinks = document.querySelector(".textLinks");
 renderTextLinks.innerHTML = textLinks
@@ -175,6 +64,8 @@ const renderIconLinks = document.querySelector(".iconLinks");
 renderIconLinks.innerHTML = Icons.map((icon) => {
 	return `<li><img aria-label="${icon.label}" src="${icon.src}" alt="${icon.alt}" /></li>`;
 }).join("");
+
+/* ------------------- Slider ------------------- */
 
 const renderSlider = document.querySelector(".slider");
 renderSlider.innerHTML = sliderImages
@@ -240,6 +131,8 @@ renderSlideSideWords.innerHTML = slideSideWords
 	})
 	.join("");
 
+/* ------------------- Main content ------------------- */
+
 const renderSidebarSlider = document.querySelector(".sidebarToggleContent");
 renderSidebarSlider.innerHTML = sidebarSliderWords
 	.map((word, index) => {
@@ -250,11 +143,12 @@ renderSidebarSlider.innerHTML = sidebarSliderWords
 	})
 	.join("");
 
+const mainSection = document.querySelector(".mainSection");
+
 const renderMainContent = (products) => {
-	const renderMainContent = document.querySelector(".mainSection");
-	renderMainContent.innerHTML = products
+	mainSection.innerHTML = products
 		.map((product) => {
-			return `<div class="productCart">
+			return `<div class="productCart" data-id="${product.id}" data-quantity="${product.quantity}">
 			<div class="productImageContainer">
 				<img class="productImage" src="${product.image}" alt="${product.name}" />
 			</div>
@@ -331,6 +225,9 @@ const sort = (sortValue, optionName) => {
 
 const openCartButton = document.getElementById("openCart");
 const cart = document.getElementById("cart");
+const addProduct = document.querySelector(".addProduct");
+const itemsCount = document.getElementById("itemsCount");
+const closeCartButton = document.getElementById("closeCartButton");
 
 openCartButton.addEventListener("click", () => {
 	cart.style.width = "600px";
@@ -338,28 +235,141 @@ openCartButton.addEventListener("click", () => {
 	modalBackground.style.zIndex = "15";
 });
 
-const cartContentItems = document.getElementById("cartContentItems");
+closeCartButton.addEventListener("click", () => {
+	cart.style.width = "0px";
+	modalBackground.style.opacity = "0";
+	modalBackground.style.zIndex = "-1";
+});
 
-cartContentItems.innerHTML = cartItemsData
-	.map((item) => {
-		return `<li class="cartItem">
-			<img class="cartItemImage" src="${item.image}" alt="item" />
-			<div class="cartItemInfo">
-				<p class="cartItemName">${item.name}</p>
-				<p class="cartItemPrice">${item.price}</p>
-			</div>
-			<div class="cartItemCount">
-				<button class="cartItemCountMinus">
-					<img src="assets/img/minus.svg" alt="minus" />
+const renderCartContentItems = document.getElementById("cartContentItems");
+
+const cartFunction = () => {
+	totalCardItemsQuantity();
+	totalCartAmount();
+
+	renderCartContentItems.innerHTML = cartItemsData
+		.map((item) => {
+			const isMinusDisabled = item.quantity == 1 && "disabled";
+			return `<li class="cartItem" data-id="${item.id}">
+				<img class="cartItemImage" src="${item.image}" alt="item" />
+				<div class="cartItemInfo">
+					<p class="cartItemName">${item.name}</p>
+					<p class="cartItemPrice">${item.price}</p>
+				</div>
+				<div class="cartItemCount">
+					<button class="cartItemCountMinus ${isMinusDisabled}">
+						<img src="assets/img/minus.svg" alt="minus" />
+					</button>
+					<p class="cartItemCountQuantity">${item.quantity}</p>
+					<button class="cartItemCountPlus">
+						<img src="assets/img/plus.svg" alt="plus" />
+					</button>
+				</div>
+				<button class="cartItemDelete">
+					<img src="assets/img/x.svg" alt="delete" />
 				</button>
-				<p class="cartItemCountQuantity">${item.count}</p>
-				<button class="cartItemCountPlus">
-					<img src="assets/img/plus.svg" alt="plus" />
-				</button>
-			</div>
-			<button class="cartItemDelete">
-				<img src="assets/img/x.svg" alt="delete" />
-			</button>
-		</li>`;
-	})
-	.join("");
+			</li>`;
+		})
+		.join("");
+};
+
+renderCartContentItems.addEventListener("click", (event) => {
+	const cartButtonMinus = event.target.closest(".cartItemCountMinus");
+	const cartButtonPlus = event.target.closest(".cartItemCountPlus");
+	const cartItemDelete = event.target.closest(".cartItemDelete");
+	const cartProductId = event.target.closest(".cartItem").dataset.id;
+
+	if (cartButtonMinus) {
+		updateProductQuantity(cartProductId, -1);
+	} else if (cartButtonPlus) {
+		updateProductQuantity(cartProductId, +1);
+	} else if (cartItemDelete) {
+		const findedIndex = cartItemsData.findIndex((item) => item.id === cartProductId);
+		if (cartItemDelete && findedIndex !== -1) {
+			cartItemsData.splice(findedIndex, 1);
+		}
+	}
+	cartFunction();
+});
+
+const updateProductQuantity = (productId, amount) => {
+	const existingProduct = cartItemsData.find((item) => item.id === productId);
+
+	if (existingProduct) {
+		const newQuantity = parseInt(existingProduct.quantity) + parseInt(amount);
+		if (newQuantity > 0) {
+			existingProduct.quantity = newQuantity.toString();
+		} else {
+			existingProduct.quantity = "1";
+		}
+	}
+};
+
+mainSection.addEventListener("click", (event) => {
+	const button = event.target.closest(".addProduct");
+
+	if (button) {
+		const productCard = button.closest(".productCart");
+		const productId = productCard.dataset.id;
+		const productQuantity = parseInt(productCard.dataset.quantity);
+		const productName = productCard.querySelector(".productName").textContent;
+		const productPrice = productCard.querySelector(".productPrice").textContent;
+		const productImage = productCard.querySelector(".productImage").src;
+
+		const existingProduct = cartItemsData.find((item) => item.id === productId);
+
+		if (existingProduct) {
+			updateProductQuantity(productId, productQuantity);
+		} else {
+			const selectedProduct = {
+				id: productId,
+				name: productName,
+				price: productPrice,
+				image: productImage,
+				quantity: productQuantity.toString(),
+			};
+			cartItemsData.push(selectedProduct);
+		}
+		cartFunction();
+	}
+});
+
+const itemsCountDelete = document.getElementById("itemsCountDelete");
+
+itemsCountDelete.addEventListener("click", () => {
+	cartItemsData = [];
+	cartFunction();
+});
+
+const totalCardItemsQuantity = () => {
+	const itemsCount = document.getElementById("itemsCount");
+	const totalQuantity = cartItemsData.reduce(
+		(total, item) => parseInt(total) + parseInt(item.quantity),
+		0
+	);
+	const openCartNumber = document.getElementById("openCart");
+
+	const quantityText = (quantity) => {
+		const lastDigit = quantity % 10;
+		if (lastDigit === 1 && quantity !== 11) {
+			return `${quantity} товар`;
+		} else if (lastDigit >= 2 && lastDigit <= 4 && (quantity < 10 || quantity > 20)) {
+			return `${quantity} товара`;
+		} else {
+			return `${quantity} товаров`;
+		}
+	};
+
+	itemsCount.innerText = quantityText(totalQuantity);
+	openCartNumber.innerText = totalQuantity;
+};
+
+const totalCartAmount = () => {
+	const cartTotalPrice = document.getElementById("cartTotalPrice");
+	const totalAmount = cartItemsData.reduce(
+		(total, item) => total + parseFloat(item.price) * parseInt(item.quantity),
+		0
+	);
+	const formattedTotalAmount = new Intl.NumberFormat("ru-RU").format(totalAmount);
+	cartTotalPrice.innerText = `${formattedTotalAmount} ₽`;
+};
