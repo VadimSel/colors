@@ -198,6 +198,7 @@ const modalHandler = (action, payload) => {
 			modalBackground.style.opacity = "0";
 			modalBackground.style.zIndex = "-1";
 			cart.style.width = "0px";
+			sidebar.style.height = "0px"
 			sort(sortValue, optionName);
 			break;
 	}
@@ -373,3 +374,15 @@ const totalCartAmount = () => {
 	const formattedTotalAmount = new Intl.NumberFormat("ru-RU").format(totalAmount);
 	cartTotalPrice.innerText = `${formattedTotalAmount} ₽`;
 };
+
+
+/* ------------------- Burger menu ------------------- */
+
+const burgerMenu = document.querySelector(".burgerMenu")
+const sidebar = document.querySelector(".sidebar")
+
+burgerMenu.addEventListener("click", () => {
+	sidebar.style.height = "318px"
+	modalBackground.style.opacity = "1";
+	modalBackground.style.zIndex = "15";
+})
