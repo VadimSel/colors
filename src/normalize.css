@@ -16,7 +16,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
 
 @font-face {
   font-family: "Inter";
-  src: url('../src/fonts/InterVariable.woff2');
+  src: url('./fonts/InterVariable.woff2');
   font-weight: 100 900;
   font-style: normal;
 }

@@ -20,6 +20,10 @@ module.exports = {
 					from: path.resolve(__dirname, "src/assets/img"),
 					to: path.resolve(__dirname, "build/assets/img"),
 				},
+				{
+					from: path.resolve(__dirname, "src/fonts"),
+					to: path.resolve(__dirname, "build/fonts")
+				}
 			],
 		}),
 	],

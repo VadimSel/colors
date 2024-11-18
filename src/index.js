@@ -243,12 +243,14 @@ openCartMobileButton.addEventListener("click", () => {
 	cart.style.width = "100vw";
 	modalBackground.style.opacity = "1";
 	modalBackground.style.zIndex = "15";
+	document.documentElement.style.overflow = "hidden"
 });
 
 closeCartButton.addEventListener("click", () => {
 	cart.style.width = "0px";
 	modalBackground.style.opacity = "0";
 	modalBackground.style.zIndex = "-1";
+	document.documentElement.style.overflow = "auto"
 });
 
 const renderCartContentItems = document.getElementById("cartContentItems");
