@@ -716,10 +716,9 @@
 
   .mainSection {
     padding-top: 0;
-    overflow: auto;
+    overflow: hidden;
     grid-template-columns: repeat(2, 156px);
     justify-content: space-between;
-    max-height: 63vh;
   }
 
   .productCartContainer {
@@ -811,9 +810,6 @@
     width: 76px;
     height: 76px;
     margin-right: 11px;
-  }
-
-  #cartContentItems {
   }
 
   .cartItem {
