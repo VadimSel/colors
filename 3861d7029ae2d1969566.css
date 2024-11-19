@@ -200,6 +200,10 @@
   text-transform: uppercase;
 }
 
+.sidebar.open {
+  height: 318px;
+}
+
 .sidebarToggleContent {
   width: 165px;
   height: 150px;
@@ -366,6 +370,11 @@
   transition: all 250ms;
 }
 
+#modalBackground.open {
+  opacity: 1;
+  z-index: 15;
+}
+
 #modal {
   position: absolute;
   width: 280px;
@@ -376,6 +385,10 @@
   z-index: 20;
   overflow: hidden;
   transition: height 250ms;
+}
+
+#modal.open {
+  height: 192px;
 }
 
 #modalOptions li {
@@ -407,6 +420,14 @@
   top: 0;
   right: 0;
   transition: width 250ms;
+}
+
+#cart.open {
+  width: 600px;
+}
+
+#cart.openMobile {
+  width: 100vw;
 }
 
 #cartContainer {
