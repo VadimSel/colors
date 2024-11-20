@@ -7,6 +7,9 @@
 	"main": "index.js",
 	"homepage": "https://VadimSel.github.io/colors",
 	"devDependencies": {
+		"@babel/core": "^7.26.0",
+		"@babel/preset-env": "^7.26.0",
+		"babel-loader": "^9.2.1",
 		"copy-webpack-plugin": "^12.0.2",
 		"css-loader": "^7.1.2",
 		"file-loader": "^6.2.0",
@@ -23,7 +26,7 @@
 		"build": "webpack --mode=production",
 		"dev": "webpack --mode=development",
 		"startDev": "webpack serve --mode development",
-		"start": "serve dist",
+		"start": "webpack serve --open",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
 	},

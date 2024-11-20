@@ -10,7 +10,7 @@ module.exports = {
 		clean: true,
 	},
 
-  plugins: [
+	plugins: [
 		new HtmlWebpackPlugin({
 			template: "./src/index.html",
 		}),
@@ -22,8 +22,8 @@ module.exports = {
 				},
 				{
 					from: path.resolve(__dirname, "src/fonts"),
-					to: path.resolve(__dirname, "build/fonts")
-				}
+					to: path.resolve(__dirname, "build/fonts"),
+				},
 			],
 		}),
 	],
@@ -33,6 +33,20 @@ module.exports = {
 			{
 				test: /\.html$/i,
 				loader: "html-loader",
+			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"],
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: "babel-loader",
+					options: {
+						presets: ["@babel/preset-env"],
+					},
+				},
 			},
 		],
 	},

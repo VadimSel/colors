@@ -1,30 +1,12 @@
-const textLinks = ["продукты", "цвета", "вдохновение", "советы", "найти магазин"];
+import { header } from "./components/header/header.js";
+import { fetchProducts } from "./utils/api.js";
+import "./normalize.css";
+import "./styles.css";
+import { slider } from "./components/slider/slider.js";
+import { renderMainContent } from "./components/mainContent/mainContent.js";
+import { renderSidebarContent } from "./components/sidebar/sidebar.js";
+
 const slideSideWords = ["главная", "продукты", "краски"];
-const sidebarSliderWords = [
-	"новинки",
-	"есть в наличии",
-	"контрактные",
-	"эксклюзивные",
-	"распродажа",
-];
-const Icons = [
-	{ label: "Поиск", src: "assets/img/search.svg", alt: "search" },
-	{ label: "Профиль", src: "assets/img/profile.svg", alt: "profile" },
-	{ label: "Избранное", src: "assets/img/heart.svg", alt: "heart" },
-];
-const sliderImages = [
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
-];
-const sliderButtons = [
-	{ src: "assets/img/chevron-left.svg", alt: "leftArrow" },
-	{ src: "assets/img/chevron-right.svg", alt: "rightArrow" },
-];
-const dots = [{ src: "./assets/img/Ellipse 264.svg", alt: "dot" }];
 const modalOptionsData = [
 	{ text: "сначала дорогие", sortValue: "highPriceFirst" },
 	{ text: "сначала недорогие", sortValue: "lowPriceFirst" },
@@ -33,7 +15,113 @@ const modalOptionsData = [
 ];
 
 let cartItemsData = [];
-let mainContentProducts;
+let mainContentProducts = [
+	{
+		id: "1",
+		image: "https://live.staticflickr.com/65535/54151257070_f5406a6c91_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "6000",
+		quantity: "1",
+	},
+	{
+		id: "2",
+		image: "https://live.staticflickr.com/65535/54150801746_a4a19e54c3_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "4800",
+		quantity: "1",
+	},
+	{
+		id: "3",
+		image: "https://live.staticflickr.com/65535/54151130154_e509cc50da_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "5290",
+		quantity: "1",
+	},
+	{
+		id: "4",
+		image: "https://live.staticflickr.com/65535/54149957512_4dbfd4d859_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "2800",
+		quantity: "1",
+	},
+	{
+		id: "5",
+		image: "https://live.staticflickr.com/65535/54149957512_4dbfd4d859_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "3400",
+		quantity: "1",
+	},
+	{
+		id: "6",
+		image: "https://live.staticflickr.com/65535/54150801656_8a72f28219_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "6000",
+		quantity: "1",
+	},
+	{
+		id: "7",
+		image: "https://live.staticflickr.com/65535/54151094128_32e16482f3_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "4800",
+		quantity: "1",
+	},
+	{
+		id: "8",
+		image: "https://live.staticflickr.com/65535/54151262110_52a6ed584d_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "5290",
+		quantity: "1",
+	},
+	{
+		id: "9",
+		image: "https://live.staticflickr.com/65535/54149957537_52172b66b7_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "2800",
+		quantity: "1",
+	},
+	{
+		id: "10",
+		image: "https://live.staticflickr.com/65535/54150801741_b43a71f23b_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "3400",
+		quantity: "1",
+	},
+	{
+		id: "11",
+		image: "https://live.staticflickr.com/65535/54151130154_e509cc50da_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "6000",
+		quantity: "1",
+	},
+	{
+		id: "12",
+		image: "https://live.staticflickr.com/65535/54149957512_4dbfd4d859_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "4800",
+		quantity: "1",
+	},
+	{
+		id: "13",
+		image: "https://live.staticflickr.com/65535/54149957512_4dbfd4d859_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "5290",
+		quantity: "1",
+	},
+	{
+		id: "14",
+		image: "https://live.staticflickr.com/65535/54150801656_8a72f28219_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "2800",
+		quantity: "1",
+	},
+	{
+		id: "15",
+		image: "https://live.staticflickr.com/65535/54151094128_32e16482f3_m.jpg",
+		name: "Краска Wallquest, Brownsone MS90102",
+		price: "3400",
+		quantity: "1",
+	},
+];
 
 const {
 	mainSection,
@@ -57,131 +145,24 @@ const {
 
 /* ------------------- Get products from API ------------------- */
 
-async function fetchProducts() {
-	try {
-		const response = await fetch("https://673470a4a042ab85d11a2d4a.mockapi.io/products");
-		mainContentProducts = await response.json();
-		renderMainContent(mainContentProducts);
-	} catch (error) {
-		console.log("Ошибка при получении данных", error);
-	}
-}
-
-fetchProducts();
+// fetchProducts().then((result) => {
+// 	mainContentProducts = result
+// 	renderMainContent(mainContentProducts, mainSection)
+// })
 
 /* ------------------- Header ------------------- */
 
-document.querySelector(".textLinks").innerHTML = textLinks
-	.map((link) => {
-		return `<li>
-      <a href="#">${link}</a>
-    </li>`;
-	})
-	.join("");
-
-document.querySelector(".iconLinks").innerHTML = Icons.map((icon) => {
-	return `<li>
-			<img aria-label="${icon.label}"
-				src="${icon.src}"
-				alt="${icon.alt}" />
-			</li>`;
-}).join("");
+header();
 
 /* ------------------- Slider ------------------- */
 
-document.querySelector(".slider").innerHTML = sliderImages
-	.map((slide) => {
-		return `<img class="sliderSlide" src="${slide.src}" alt="${slide.alt}" />`;
-	})
-	.join("");
-
-document.querySelector(".arrowContainer").innerHTML = sliderButtons
-	.map((button) => {
-		return `<button class="sliderButton"><img class="slide" src="${button.src}" alt="${button.alt}" /></button>`;
-	})
-	.join("");
-
-let currentSlide = 0;
-
-function updateDots() {
-	const dots = document.querySelectorAll(".dot");
-	dots.forEach((dot, index) => {
-		dot.classList.toggle("active", index === currentSlide);
-	});
-}
-
-function showSlide(index) {
-	const totalSlides = document.querySelectorAll(".sliderSlide").length;
-
-	if (index < 0) index = totalSlides - 1;
-	if (index >= totalSlides) index = 0;
-
-	document.querySelector(".slider").style.transform = `translateX(-${index * 100}%)`;
-	currentSlide = index;
-
-	updateDots();
-}
-
-document
-	.querySelector(".arrowContainer .sliderButton:nth-child(1)")
-	.addEventListener("click", () => {
-		showSlide(currentSlide - 1);
-	});
-document
-	.querySelector(".arrowContainer .sliderButton:nth-child(2)")
-	.addEventListener("click", () => {
-		showSlide(currentSlide + 1);
-	});
-
-document.querySelector(".pagination").innerHTML = sliderImages
-	.map((_, index) => {
-		return `<img class="dot ${index === currentSlide && "active"}" src="${
-			dots[0].src
-		}" alt="dot" />`;
-	})
-	.join("");
-
-document.querySelector(".slideSideText").innerHTML = slideSideWords
-	.map((word, index) => {
-		return `<span>${word}</span> ${
-			index < slideSideWords.length - 1 ? `<img src="assets/img/Ellipse 264.svg"/>` : ""
-		}`;
-	})
-	.join("");
+slider();
 
 /* ------------------- Main content ------------------- */
 
-document.querySelector(".sidebarToggleContent").innerHTML = sidebarSliderWords
-	.map((word, index) => {
-		return `<div class="sidebarSliderItem">
-				<input type="checkbox" id="toggle${index}" class="toggle"/>
-				<label for="toggle${index}"><span class="toggleWord">${word}</span></label>
-			</div>`;
-	})
-	.join("");
+renderSidebarContent()
 
-function renderMainContent(products) {
-	mainSection.innerHTML = products
-		.map((product) => {
-			return `<div class="productCartContainer">
-			<div class="productCart" data-id="${product.id}" data-quantity="${product.quantity}">
-				<div class="productImageContainer">
-					<img class="productImage" src="${product.image}" alt="${product.name}" />
-				</div>
-				<div class="productInfo">
-					<h3 class="productName">${product.name}</h3>
-					<div class="priceAndButton">
-						<p class="productPrice">${product.price} ₽</p>
-						<button class="addProduct">
-							<img src="assets/img/plus.svg" alt="plus"/>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>`;
-		})
-		.join("");
-}
+renderMainContent(mainContentProducts, mainSection);
 
 /* ------------------- Modal ------------------- */
 
@@ -199,7 +180,7 @@ function modalHandler(action, payload) {
 	} else if (action === "close") {
 		if (payload) {
 			sortValue = payload.target.getAttribute("data-sortValue");
-			optionName = payload.target.textContent;
+			const optionName = payload.target.textContent;
 			sort(sortValue, optionName);
 		}
 		[modal, modalBackground, cart, sidebar].forEach((el) => {
@@ -207,6 +188,7 @@ function modalHandler(action, payload) {
 		});
 	}
 }
+
 
 openModalButton.addEventListener("click", () => modalHandler("open"));
 modalOptions.addEventListener("click", (event) => modalHandler("close", event));
@@ -218,11 +200,13 @@ function sort(sortValue, optionName) {
 	renderMainContent(
 		[...mainContentProducts].sort((a, b) =>
 			sortValue === "highPriceFirst" ? b.price - a.price : a.price - b.price
-		)
+		),
+		mainSection
 	);
 
 	openModalButton.innerHTML = `${optionName}<img src="assets/img/Frame 10.svg" />`;
 }
+
 
 /* ------------------- Cart ------------------- */
 
