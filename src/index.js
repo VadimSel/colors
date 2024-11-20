@@ -9,8 +9,6 @@ import { renderModal } from "./components/modal/modal.js";
 import { renderCart } from "./components/cart/cart.js";
 
 const slideSideWords = ["главная", "продукты", "краски"];
-
-// let cartItemsData = [];
 let mainContentProducts = [
 	{
 		id: "1",
@@ -122,65 +120,34 @@ let mainContentProducts = [
 const {
 	mainSection,
 	modalBackground,
-	// cart,
 	sidebar,
-	// renderCartContentItems,
 } = {
 	mainSection: document.querySelector(".mainSection"),
 	modalBackground: document.getElementById("modalBackground"),
-	// cart: document.getElementById("cart"),
 	sidebar: document.querySelector(".sidebar"),
-	// renderCartContentItems: document.getElementById("cartContentItems"),
 };
-
-/* ------------------- Get products from API ------------------- */
 
 // fetchProducts().then((result) => {
 // 	mainContentProducts = result
 // 	renderMainContent(mainContentProducts, mainSection)
 // })
 
-/* ------------------- Header ------------------- */
-
 header();
-
-/* ------------------- Slider ------------------- */
-
 slider(slideSideWords);
-
-/* ------------------- Main content ------------------- */
-
-renderSidebarContent()
-
+renderSidebarContent(sidebar, modalBackground)
 renderMainContent(mainContentProducts, mainSection, slideSideWords);
-
-/* ------------------- Modal ------------------- */
-
 renderModal(modalBackground, sidebar, (sortedData) => {
 	mainContentProducts = sortedData
 	renderMainContent(mainContentProducts, mainSection, slideSideWords)
 }, mainContentProducts)
-
-/* ------------------- Cart ------------------- */
-
 renderCart(mainSection, modalBackground)
 
 /* ------------------- Burger menu ------------------- */
 
-document.querySelector(".burgerMenu").addEventListener("click", () => {
-	[sidebar, modalBackground].forEach((el) => {
-		el.classList.add("open");
-	});
-});
+// document.querySelector(".burgerMenu").addEventListener("click", () => {
+// 	[sidebar, modalBackground].forEach((el) => {
+// 		el.classList.add("open");
+// 	});
+// });
 
 /* ------------------- Main content mobile ------------------- */
-
-// document.addEventListener("DOMContentLoaded", () => {
-// 	document.querySelector(".sideTextMobile").innerHTML = slideSideWords
-// 		.map((word, index) => {
-// 			return `<span>${word}</span> ${
-// 				index < slideSideWords.length - 1 ? `<img src="assets/img/Ellipse 47.svg"/>` : ""
-// 			}`;
-// 		})
-// 		.join("");
-// });

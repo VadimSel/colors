@@ -183,17 +183,6 @@
   background: none;
   opacity: 0.2;
 }
-.burgerMenu {
-  display: none;
-}
-
-.sidebarLine {
-  display: none;
-}
-
-.filtersText {
-  display: none;
-}
 
 @media (max-width: 768px) {
   #openCart {

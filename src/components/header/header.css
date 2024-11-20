@@ -6,6 +6,11 @@
   display: flex;
 }
 
+#modalBackground.open {
+  opacity: 1;
+  z-index: 15;
+}
+
 .logoContainer {
   max-width: 367px;
   flex-grow: 1;
@@ -67,6 +72,10 @@
 #phoneText {
   opacity: 0.3;
   font-size: 14px;
+}
+
+.burgerMenu {
+  display: none;
 }
 
 @media (max-width: 768px) {

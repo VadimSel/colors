@@ -110,7 +110,9 @@
   display: none;
 }
 
-/* ------------------- Mobile ------------------- */
+.filtersText {
+  display: none;
+}
 
 @media (max-width: 768px) {
   .mainContent {

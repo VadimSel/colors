@@ -64,6 +64,14 @@
   background: var(--main-color-green);
 }
 
+.burgerMenu {
+  display: none;
+}
+
+.sidebarLine {
+  display: none;
+}
+
 /* ------------------- Mobile ------------------- */
 
 @media (max-width: 768px) {
@@ -86,5 +94,12 @@
   .sidebarToggleContent {
     margin-left: 24px;
     margin-top: 0;
+  }
+
+  .burgerMenu {
+    background: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 }

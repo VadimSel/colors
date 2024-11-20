@@ -8,7 +8,7 @@ const Icons = [
 	{ label: "Избранное", src: "assets/img/heart.svg", alt: "heart" },
 ];
 
-export const header = () => {
+export const header = (sidebar, modalBackground) => {
 	document.querySelector(".textLinks").innerHTML = textLinks
 		.map((link) => {
 			return `<li>

@@ -1,6 +1,5 @@
 import "./slider.css"
 
-// const slideSideWords = ["главная", "продукты", "краски"];
 const sliderImages = [
 	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
 	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
