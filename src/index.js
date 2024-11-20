@@ -5,14 +5,15 @@ import "./styles.css";
 import { slider } from "./components/slider/slider.js";
 import { renderMainContent } from "./components/mainContent/mainContent.js";
 import { renderSidebarContent } from "./components/sidebar/sidebar.js";
+import { renderModal } from "./components/modal/modal.js";
 
 const slideSideWords = ["главная", "продукты", "краски"];
-const modalOptionsData = [
-	{ text: "сначала дорогие", sortValue: "highPriceFirst" },
-	{ text: "сначала недорогие", sortValue: "lowPriceFirst" },
-	{ text: "сначала популярные", sortValue: "popularFirst" },
-	{ text: "сначала новые", sortValue: "newFirst" },
-];
+// const modalOptionsData = [
+// 	{ text: "сначала дорогие", sortValue: "highPriceFirst" },
+// 	{ text: "сначала недорогие", sortValue: "lowPriceFirst" },
+// 	{ text: "сначала популярные", sortValue: "popularFirst" },
+// 	{ text: "сначала новые", sortValue: "newFirst" },
+// ];
 
 let cartItemsData = [];
 let mainContentProducts = [
@@ -125,18 +126,18 @@ let mainContentProducts = [
 
 const {
 	mainSection,
-	openModalButton,
-	modal,
-	modalOptions,
+	// openModalButton,
+	// modal,
+	// modalOptions,
 	modalBackground,
 	cart,
 	sidebar,
 	renderCartContentItems,
 } = {
 	mainSection: document.querySelector(".mainSection"),
-	openModalButton: document.getElementById("sortTextButton"),
-	modal: document.getElementById("modal"),
-	modalOptions: document.getElementById("modalOptions"),
+	// openModalButton: document.getElementById("sortTextButton"),
+	// modal: document.getElementById("modal"),
+	// modalOptions: document.getElementById("modalOptions"),
 	modalBackground: document.getElementById("modalBackground"),
 	cart: document.getElementById("cart"),
 	sidebar: document.querySelector(".sidebar"),
@@ -166,47 +167,10 @@ renderMainContent(mainContentProducts, mainSection);
 
 /* ------------------- Modal ------------------- */
 
-let sortValue;
-
-modalOptions.innerHTML = modalOptionsData
-	.map((option) => {
-		return `<li class="modalOption" data-sortValue="${option.sortValue}">${option.text}</li>`;
-	})
-	.join("");
-
-function modalHandler(action, payload) {
-	if (action === "open") {
-		[modal, modalBackground].forEach((el) => el.classList.add("open"));
-	} else if (action === "close") {
-		if (payload) {
-			sortValue = payload.target.getAttribute("data-sortValue");
-			const optionName = payload.target.textContent;
-			sort(sortValue, optionName);
-		}
-		[modal, modalBackground, cart, sidebar].forEach((el) => {
-			el.classList.remove("open");
-		});
-	}
-}
-
-
-openModalButton.addEventListener("click", () => modalHandler("open"));
-modalOptions.addEventListener("click", (event) => modalHandler("close", event));
-modalBackground.addEventListener("click", () => modalHandler("close"));
-
-/* ------------------- Sort ------------------- */
-
-function sort(sortValue, optionName) {
-	renderMainContent(
-		[...mainContentProducts].sort((a, b) =>
-			sortValue === "highPriceFirst" ? b.price - a.price : a.price - b.price
-		),
-		mainSection
-	);
-
-	openModalButton.innerHTML = `${optionName}<img src="assets/img/Frame 10.svg" />`;
-}
-
+renderModal(modalBackground, sidebar, (sortedData) => {
+	mainContentProducts = sortedData
+	renderMainContent(mainContentProducts, mainSection)
+}, mainContentProducts)
 
 /* ------------------- Cart ------------------- */
 

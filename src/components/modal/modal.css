@@ -1,0 +1,48 @@
+#modalBackground {
+  opacity: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 250ms;
+}
+
+#modalBackground.open {
+  opacity: 1;
+  z-index: 15;
+}
+
+#modal {
+  position: absolute;
+  width: 280px;
+  height: 0;
+  top: 72px;
+  right: 22px;
+  background: white;
+  z-index: 20;
+  overflow: hidden;
+  transition: height 250ms;
+}
+
+#modal.open {
+  height: 192px;
+}
+
+#modalOptions li {
+  height: 48px;
+  padding-left: 24px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#modalOptions li:hover {
+  background: var(--main-color-green);
+}

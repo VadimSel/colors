@@ -358,7 +358,7 @@
 
 /* ------------------- Sort modal ------------------- */
 
-#modalBackground {
+/* #modalBackground {
   opacity: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.7);
@@ -405,7 +405,7 @@
 
 #modalOptions li:hover {
   background: var(--main-color-green);
-}
+} */
 
 /* ------------------- Cart ------------------- */
 
