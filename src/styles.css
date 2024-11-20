@@ -411,7 +411,7 @@
 
 
 
-#cart {
+/* #cart {
   position: absolute;
   width: 0px;
   height: 100%;
@@ -611,7 +611,7 @@
 
 .mobileTitle {
   display: none;
-}
+} */
 
 /* ------------------- Mobile ------------------- */
 
@@ -809,7 +809,7 @@
 
   /* ------------------- Mobile cart ------------------- */
 
-  #openCart {
+  /* #openCart {
     display: none;
   }
 
@@ -848,5 +848,5 @@
   .cartItemCount {
     max-width: 100px;
     margin-right: 8px;
-  }
+  } */
 }

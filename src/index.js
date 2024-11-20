@@ -6,16 +6,11 @@ import { slider } from "./components/slider/slider.js";
 import { renderMainContent } from "./components/mainContent/mainContent.js";
 import { renderSidebarContent } from "./components/sidebar/sidebar.js";
 import { renderModal } from "./components/modal/modal.js";
+import { renderCart } from "./components/cart/cart.js";
 
 const slideSideWords = ["главная", "продукты", "краски"];
-// const modalOptionsData = [
-// 	{ text: "сначала дорогие", sortValue: "highPriceFirst" },
-// 	{ text: "сначала недорогие", sortValue: "lowPriceFirst" },
-// 	{ text: "сначала популярные", sortValue: "popularFirst" },
-// 	{ text: "сначала новые", sortValue: "newFirst" },
-// ];
 
-let cartItemsData = [];
+// let cartItemsData = [];
 let mainContentProducts = [
 	{
 		id: "1",
@@ -126,22 +121,16 @@ let mainContentProducts = [
 
 const {
 	mainSection,
-	// openModalButton,
-	// modal,
-	// modalOptions,
 	modalBackground,
-	cart,
+	// cart,
 	sidebar,
-	renderCartContentItems,
+	// renderCartContentItems,
 } = {
 	mainSection: document.querySelector(".mainSection"),
-	// openModalButton: document.getElementById("sortTextButton"),
-	// modal: document.getElementById("modal"),
-	// modalOptions: document.getElementById("modalOptions"),
 	modalBackground: document.getElementById("modalBackground"),
-	cart: document.getElementById("cart"),
+	// cart: document.getElementById("cart"),
 	sidebar: document.querySelector(".sidebar"),
-	renderCartContentItems: document.getElementById("cartContentItems"),
+	// renderCartContentItems: document.getElementById("cartContentItems"),
 };
 
 /* ------------------- Get products from API ------------------- */
@@ -157,166 +146,24 @@ header();
 
 /* ------------------- Slider ------------------- */
 
-slider();
+slider(slideSideWords);
 
 /* ------------------- Main content ------------------- */
 
 renderSidebarContent()
 
-renderMainContent(mainContentProducts, mainSection);
+renderMainContent(mainContentProducts, mainSection, slideSideWords);
 
 /* ------------------- Modal ------------------- */
 
 renderModal(modalBackground, sidebar, (sortedData) => {
 	mainContentProducts = sortedData
-	renderMainContent(mainContentProducts, mainSection)
+	renderMainContent(mainContentProducts, mainSection, slideSideWords)
 }, mainContentProducts)
 
 /* ------------------- Cart ------------------- */
 
-document.getElementById("openCart").addEventListener("click", () => {
-	[cart, modalBackground].forEach((el) => {
-		el.classList.add("open");
-	});
-});
-
-document.getElementById("openCartMobile").addEventListener("click", () => {
-	cart.classList.add("openMobile");
-	modalBackground.classList.add("open");
-	document.documentElement.style.overflow = "hidden";
-});
-
-document.getElementById("closeCartButton").addEventListener("click", () => {
-	[cart, modalBackground].forEach((el) => {
-		el.classList.remove("open", "openMobile");
-	});
-	document.documentElement.style.overflow = "auto";
-});
-
-function cartFunction() {
-	totalCardItemsQuantity();
-	totalCartAmount();
-
-	renderCartContentItems.innerHTML = cartItemsData
-		.map((item) => {
-			const isMinusDisabled = item.quantity == 1 && "disabled";
-			return `<li class="cartItem" data-id="${item.id}">
-				<img class="cartItemImage" src="${item.image}" alt="item" />
-				<div class="cartItemInfo">
-					<p class="cartItemName">${item.name}</p>
-					<p class="cartItemPrice">${item.price}</p>
-				</div>
-				<div class="cartItemCount">
-					<button class="cartItemCountMinus ${isMinusDisabled}">
-						<img src="assets/img/minus.svg" alt="minus" />
-					</button>
-					<p class="cartItemCountQuantity">${item.quantity}</p>
-					<button class="cartItemCountPlus">
-						<img src="assets/img/plus.svg" alt="plus" />
-					</button>
-				</div>
-				<button class="cartItemDelete">
-					<img src="assets/img/x.svg" alt="delete" />
-				</button>
-			</li>`;
-		})
-		.join("");
-}
-
-renderCartContentItems.addEventListener("click", (event) => {
-	const cartItemDelete = event.target.closest(".cartItemDelete");
-	const cartProductId = event.target.closest(".cartItem").dataset.id;
-
-	if (event.target.closest(".cartItemCountMinus")) {
-		updateProductQuantity(cartProductId, -1);
-	} else if (event.target.closest(".cartItemCountPlus")) {
-		updateProductQuantity(cartProductId, +1);
-	} else if (cartItemDelete) {
-		const findedIndex = cartItemsData.findIndex((item) => item.id === cartProductId);
-		if (cartItemDelete && findedIndex !== -1) {
-			cartItemsData.splice(findedIndex, 1);
-		}
-	}
-	cartFunction();
-});
-
-function updateProductQuantity(productId, amount) {
-	const existingProduct = cartItemsData.find((item) => item.id === productId);
-
-	if (existingProduct) {
-		const newQuantity = parseInt(existingProduct.quantity) + parseInt(amount);
-		if (newQuantity > 0) {
-			existingProduct.quantity = newQuantity.toString();
-		} else {
-			existingProduct.quantity = "1";
-		}
-	}
-}
-
-mainSection.addEventListener("click", (event) => {
-	const button = event.target.closest(".addProduct");
-
-	if (button) {
-		const productCard = button.closest(".productCart");
-		const productId = productCard.dataset.id;
-		const productQuantity = parseInt(productCard.dataset.quantity);
-		const productName = productCard.querySelector(".productName").textContent;
-		const productPrice = productCard.querySelector(".productPrice").textContent;
-		const productImage = productCard.querySelector(".productImage").src;
-
-		const existingProduct = cartItemsData.find((item) => item.id === productId);
-
-		if (existingProduct) {
-			updateProductQuantity(productId, productQuantity);
-		} else {
-			const selectedProduct = {
-				id: productId,
-				name: productName,
-				price: productPrice,
-				image: productImage,
-				quantity: productQuantity.toString(),
-			};
-			cartItemsData.push(selectedProduct);
-		}
-		cartFunction();
-	}
-});
-
-document.getElementById("itemsCountDelete").addEventListener("click", () => {
-	cartItemsData = [];
-	cartFunction();
-});
-
-function totalCardItemsQuantity() {
-	const totalQuantity = cartItemsData.reduce(
-		(total, item) => parseInt(total) + parseInt(item.quantity),
-		0
-	);
-
-	const quantityText = (quantity) => {
-		const lastDigit = quantity % 10;
-		if (lastDigit === 1 && quantity !== 11) {
-			return `${quantity} товар`;
-		} else if (lastDigit >= 2 && lastDigit <= 4 && (quantity < 10 || quantity > 20)) {
-			return `${quantity} товара`;
-		} else {
-			return `${quantity} товаров`;
-		}
-	};
-
-	document.getElementById("itemsCount").innerText = quantityText(totalQuantity);
-	document.getElementById("openCart").innerText = totalQuantity;
-	document.getElementById("openCartMobile").innerText = totalQuantity;
-}
-
-function totalCartAmount() {
-	const totalAmount = cartItemsData.reduce(
-		(total, item) => total + parseFloat(item.price) * parseInt(item.quantity),
-		0
-	);
-	const formattedTotalAmount = new Intl.NumberFormat("ru-RU").format(totalAmount);
-	document.getElementById("cartTotalPrice").innerText = `${formattedTotalAmount} ₽`;
-}
+renderCart(mainSection, modalBackground)
 
 /* ------------------- Burger menu ------------------- */
 
@@ -328,12 +175,12 @@ document.querySelector(".burgerMenu").addEventListener("click", () => {
 
 /* ------------------- Main content mobile ------------------- */
 
-document.addEventListener("DOMContentLoaded", () => {
-	document.querySelector(".sideTextMobile").innerHTML = slideSideWords
-		.map((word, index) => {
-			return `<span>${word}</span> ${
-				index < slideSideWords.length - 1 ? `<img src="assets/img/Ellipse 47.svg"/>` : ""
-			}`;
-		})
-		.join("");
-});
+// document.addEventListener("DOMContentLoaded", () => {
+// 	document.querySelector(".sideTextMobile").innerHTML = slideSideWords
+// 		.map((word, index) => {
+// 			return `<span>${word}</span> ${
+// 				index < slideSideWords.length - 1 ? `<img src="assets/img/Ellipse 47.svg"/>` : ""
+// 			}`;
+// 		})
+// 		.join("");
+// });

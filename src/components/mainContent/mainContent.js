@@ -1,25 +1,6 @@
-import "./mainContent.css"
+import "./mainContent.css";
 
-// const sidebarSliderWords = [
-// 	"новинки",
-// 	"есть в наличии",
-// 	"контрактные",
-// 	"эксклюзивные",
-// 	"распродажа",
-// ];
-
-// export const mainContent = () => {
-//   document.querySelector(".sidebarToggleContent").innerHTML = sidebarSliderWords
-// 	.map((word, index) => {
-// 		return `<div class="sidebarSliderItem">
-// 				<input type="checkbox" id="toggle${index}" class="toggle"/>
-// 				<label for="toggle${index}"><span class="toggleWord">${word}</span></label>
-// 			</div>`;
-// 	})
-// 	.join("");
-
-// }
-export function renderMainContent(products, mainSection) {
+export function renderMainContent(products, mainSection, slideSideWords) {
 	mainSection.innerHTML = products
 		.map((product) => {
 			return `<div class="productCartContainer">
@@ -40,15 +21,16 @@ export function renderMainContent(products, mainSection) {
 		</div>`;
 		})
 		.join("");
-}
 
-// export const renderSidebarContent = () => {
-// 	document.querySelector(".sidebarToggleContent").innerHTML = sidebarSliderWords
-// 	.map((word, index) => {
-// 		return `<div class="sidebarSliderItem">
-// 				<input type="checkbox" id="toggle${index}" class="toggle"/>
-// 				<label for="toggle${index}"><span class="toggleWord">${word}</span></label>
-// 			</div>`;
-// 	})
-// 	.join("");
-// }
+	document.addEventListener("DOMContentLoaded", () => {
+		document.querySelector(".sideTextMobile").innerHTML = slideSideWords
+			.map((word, index) => {
+				return `<span>${word}</span> ${
+					index < slideSideWords.length - 1
+						? `<img src="assets/img/Ellipse 47.svg"/>`
+						: ""
+				}`;
+			})
+			.join("");
+	});
+}

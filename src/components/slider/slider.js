@@ -1,6 +1,6 @@
 import "./slider.css"
 
-const slideSideWords = ["главная", "продукты", "краски"];
+// const slideSideWords = ["главная", "продукты", "краски"];
 const sliderImages = [
 	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
 	{ src: "assets/img/Rectangle 645.webp", alt: "slide" },
@@ -15,7 +15,7 @@ const sliderButtons = [
 ];
 const dots = [{ src: "./assets/img/Ellipse 264.svg", alt: "dot" }];
 
-export const slider = () => {
+export const slider = (slideSideWords) => {
   document.querySelector(".slider").innerHTML = sliderImages
 	.map((slide) => {
 		return `<img class="sliderSlide" src="${slide.src}" alt="${slide.alt}" />`;
